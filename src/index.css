@@ -7,3 +7,24 @@
 
     font-family: "montserrat", sans-serif;
 }
+
+
+.estilos::before{
+    content: "";
+    left: 0;
+    top:0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.4);
+    z-index: 2;
+} 
+header.aparente {
+    background-color: white;
+    box-shadow: 0px 10px 4px 5px rgba(0,0,0,.2);
+}
+
+header.aparente .aparente1{
+    color: rgba(0,0,0,.6);
+}
+

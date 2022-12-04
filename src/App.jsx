@@ -1,15 +1,33 @@
 import { Route, Routes } from "react-router-dom";
-import { Register, Login, Dashboard } from "./components/index";
-import { ToastContainer } from 'react-toastify';
+import { Dashboard, Login, Register } from "./components/index";
+import { ToastContainer } from "react-toastify";
+import { PublicRoutes, PrivateRoutes } from "./Routes/";
+// import Rutas from "./Routes/Rutas";
 
 const App = () => {
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
+
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/login"
+          element={
+            <PublicRoutes>
+              <Login />
+            </PublicRoutes>
+          }
+        />
+        <Route path="/register" element={<Register/>} />
+
+        <Route
+          path="/*"
+          element={
+            <PrivateRoutes>
+              <Dashboard />
+            </PrivateRoutes>
+          }
+        />
       </Routes>
     </>
   );

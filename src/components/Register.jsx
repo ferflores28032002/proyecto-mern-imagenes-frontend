@@ -1,16 +1,47 @@
 import img1 from "../assets/imagenes/img1.jpeg";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { UseSliceAuth } from "../store/hooks/UseSliceAuth";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    name: "",
+    apellidos: "",
+    email: "",
+    password: "",
+    password2: "",
+    terminos: "",
+  });
 
-  const { register,handleSubmit, reset, formState: { errors }} = useForm({ name:"", apellido:"", email:"", password:"", password2:"", terminos: "" });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const { registerUser, errorMessage } = UseSliceAuth();
+
   const onSubmit = (data) => {
-    navigate("/login")
-    reset()
-  }
+    const { password, password2 } = data;
 
+    if (password !== password2) {
+      toast.info("Las contraseñas no son iguales", { position: "top-right" });
+    } else {
+      registerUser(data);
+      reset();
+    }
+  };
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      toast.info(errorMessage, {
+        position: "top-right",
+      });
+    }
+  }, [errorMessage]);
 
   return (
     <div
@@ -28,24 +59,28 @@ const Register = () => {
             ></div>
 
             <div className="py-8 px-4">
-              <h1 className="font-semibold text-xl">Register</h1>
+              <h1 className="font-semibold text-xl">Registrate</h1>
               <p className="mt-3 text-sm">
-                Create your account it's free and only take a minute
+                Crea tu cuenta y se parte de PexelsPlus
               </p>
 
               <div className="  grid grid-cols-1 lg:grid-cols-2 gap-2 mt-4">
                 <input
                   className="rounded border-gray-300 focus:outline-1 border-1 text-sm"
                   type="text"
-                  placeholder="First Name"
+                  placeholder="Nombres"
                   autoFocus={true}
-                  {...register("name")}
+                  {...register("name", {
+                    required: true,
+                  })}
                 />
                 <input
                   className="rounded border-gray-300 focus:outline-1 border-1 text-sm"
                   type="text"
-                  placeholder="Last Name"
-                  {...register("apellido")}
+                  placeholder="Apellidos"
+                  {...register("apellidos", {
+                    required: true,
+                  })}
                 />
               </div>
 
@@ -53,34 +88,43 @@ const Register = () => {
                 className="mt-4 w-full rounded border-gray-300 focus:outline-1 border-1 text-sm"
                 type="text"
                 placeholder="Email"
-                {...register("email")}
+                {...register("email", {
+                  required: true,
+                })}
               />
               <input
                 className="mt-4 w-full rounded border-gray-300 focus:outline-1 border-1 text-sm"
                 type="password"
-                placeholder="Password"
-                {...register("password")}
+                placeholder="Contraseña"
+                {...register("password", {
+                  required: true,
+                })}
               />
               <input
                 className="mt-4 w-full rounded border-gray-300 focus:outline-1 border-1 text-sm"
                 type="password"
-                placeholder="Confirm Password"
-                {...register("password2")}
+                placeholder="Repite la contraseña"
+                {...register("password2", {
+                  required: true,
+                })}
               />
 
               <div className="text-sm mt-4 flex gap-2">
-                <input id="terminos" type="checkbox" className="rounded-lg" {...register("terminos")} />
+                <input
+                  id="terminos"
+                  type="checkbox"
+                  className="rounded-lg"
+                  {...register("terminos", { required: true })}
+                />
                 <label htmlFor="terminos">
-                  I accept the{" "}
-                  <span className="text-indigo-600">Terms of use</span> Privacy
-                  Polity
+                  Acepta los términos{" "}
+                  <span className="text-indigo-600">y condiciones</span>
                 </label>
-                
               </div>
 
               <div className="block mt-4">
                 <button className="py-3 text-sm w-full rounded-lg bg-indigo-600 text-white font-semibold text-center">
-                  Register Now
+                  Registrate
                 </button>
               </div>
             </div>

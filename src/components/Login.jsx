@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import img3 from "../assets/imagenes/img3.jpeg";
 import { useForm } from "react-hook-form";
+import { UseSliceAuth } from "../store/hooks/UseSliceAuth";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const { reset, handleSubmit, formState: { errors}, register } = useForm({email: "", password: ""});
-
+  const {
+    reset,
+    handleSubmit,
+    formState: { errors },
+    register,
+  } = useForm({ email: "", password: "" });
+  const { startLogin, errorMessage } = UseSliceAuth();
 
   const onSubmit = (data) => {
-    console.log(data)
-    reset()
-  }
+    startLogin(data);
+    reset();
+  };
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      toast.info(errorMessage, {
+        position: "top-right",
+      });
+    }
+  }, [errorMessage]);
 
   return (
     <div
@@ -28,9 +43,9 @@ const Login = () => {
             ></div>
 
             <div className="py-8 px-4">
-              <h1 className="font-semibold text-xl">Login</h1>
+              <h1 className="font-semibold text-xl">Incia Sesión</h1>
               <p className="mt-3 text-sm">
-                Log in and view, upload and download images
+                Sube y descarga imagenes en PexelsPlus
               </p>
 
               <input
@@ -38,25 +53,35 @@ const Login = () => {
                 type="text"
                 autoFocus={true}
                 placeholder="Email"
-                {...register("email")}
+                {...register("email", {
+                  required: true,
+                })}
               />
               <input
                 className="mt-4 w-full rounded border-gray-300 focus:outline-1 border-1 text-sm"
                 type="password"
                 placeholder="Password"
-                {...register("password")}
+                {...register("password", {
+                  required: true,
+                })}
               />
 
-              <div className="block mt-4">
+              {(errors.email?.type || errors.password?.type) === "required" && (
+                <p className="text-sm text-center py-2">
+                  Los campos con requeridos
+                </p>
+              )}
+
+              <div className="block mt-2">
                 <button className="py-3 text-sm w-full rounded-lg bg-indigo-600 text-white font-semibold text-center">
-                  Login
+                  Acceder
                 </button>
               </div>
 
               <div className="mt-4 text-center w-full">
                 <Link to="/register" className="text-sm">
-                  You do not have an account?{" "}
-                  <span className="text-indigo-600">Sign up</span>{" "}
+                  ¿No tienes una cuenta?{" "}
+                  <span className="text-indigo-600">Registrate</span>{" "}
                 </Link>
               </div>
             </div>
