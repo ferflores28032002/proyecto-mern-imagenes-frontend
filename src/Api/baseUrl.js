@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseUrl = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: import.meta.env.VITE_APP_API,
 });
 
 //TODO: Configuraciones de los interceptores
