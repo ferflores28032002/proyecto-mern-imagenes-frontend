@@ -44,12 +44,7 @@ const Register = () => {
   }, [errorMessage]);
 
   return (
-    <div
-      className="w-full min-h-screen flex justify-center items-center"
-      style={{
-        backgroundImage: "linear-gradient(115deg,#7e22ce, #7e22ce, #6b21a8)",
-      }}
-    >
+    <div className="w-full min-h-screen flex justify-center items-center bg-indigo-800">
       <div className="rounded-lg mx-4 lg:shadow-2xl bg-white  container lg:mx-64 ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -69,7 +64,6 @@ const Register = () => {
                   className="rounded border-gray-300 focus:outline-1 border-1 text-sm"
                   type="text"
                   placeholder="Nombres"
-                  autoFocus={true}
                   {...register("name", {
                     required: true,
                   })}
@@ -118,12 +112,12 @@ const Register = () => {
                 />
                 <label htmlFor="terminos">
                   Acepta los términos{" "}
-                  <span className="text-indigo-600">y condiciones</span>
+                  <span className="text-indigo-700">y condiciones</span>
                 </label>
               </div>
 
               <div className="block mt-4">
-                <button className="py-3 text-sm w-full rounded-lg bg-indigo-600 text-white font-semibold text-center">
+                <button className="py-3 text-sm w-full rounded-lg bg-indigo-700 text-white font-semibold text-center">
                   Registrate
                 </button>
               </div>

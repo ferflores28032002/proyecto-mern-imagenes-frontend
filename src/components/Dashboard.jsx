@@ -70,10 +70,10 @@ const Dashboard = () => {
 
       <header className="fixed z-[100] bg-transparent max-w-full left-0 top-0 container px-4 lg:px-8  flex justify-between items-center py-4">
         <Link to="/">
-          <span className="p-2 lg:p-3 rounded-full mr-2 bg-purple-500 text-white font-semibold">
+          <span className="p-2 text-sm lg:p-3 rounded-full mr-2 bg-indigo-800 text-white font-semibold">
             PP
           </span>
-          <span className="font-semibold text-white aparente1 lg:text-xl">
+          <span className="font-semibold text-sm text-white aparente1 lg:text-xl">
             PexelsPlus
           </span>
         </Link>
@@ -81,13 +81,13 @@ const Dashboard = () => {
         <ul className="flex items-center justify-between gap-x-4">
           <button
             onClick={() => setModal(!modal)}
-            className="text-white font-semibold hover:border-b-2 aparente1"
+            className="text-white text-sm font-semibold hover:border-b-2 aparente1"
           >
             Subir
           </button>
           <button
             onClick={() => UserLogout()}
-            className="py-2 px-4 rounded-full mr-2 bg-purple-500 text-white font-semibold hover:bg-purple-600"
+            className="py-2 px-4 rounded-full text-sm  bg-indigo-700 text-white font-semibold hover:bg-purple-600"
           >
             Salir
           </button>
@@ -101,7 +101,7 @@ const Dashboard = () => {
         <div className="flex items-center justify-center flex-col h-full">
           <h1 className="z-60 text-[1.1rem] lg:text-2xl pb-4 text-white font-semibold z-50">
             ¡Bienvenido{" "}
-            <span className="text-purple-500">{user.usuario.name}!</span> a
+            <span className="text-indigo-700">{user.usuario.name}!</span> a
             PexelsPlus
           </h1>
           <h3 className="text-[1rem] text-center pb-4 text-white font-semibold z-50">
@@ -118,11 +118,11 @@ const Dashboard = () => {
               name="search"
               value={search}
               onChange={onInputChange}
-              className=" px-4 py-3 lg:w-[32rem] outline-none border-none rounded"
+              className="py-2 px-4 lg:py-3 w-[22rem] placeholder:text-sm lg:w-[32rem] outline-none border-none rounded"
               type="text"
             />
             <CiSearch
-              className="text-gray-800 absolute right-4 top-3"
+              className="text-gray-800 absolute right-3 top-2 lg:right-4 lg:top-3"
               size={25}
             />
           </form>
@@ -131,13 +131,13 @@ const Dashboard = () => {
 
       <div className="px-3 pt-4 container mx-auto flex items-center justify-center gap-6">
         <h1 className="text-center">
-          ¡Hola <span className="text-purple-500">{user.usuario.name}!</span>{" "}
+          ¡Hola <span className="text-indigo-700">{user.usuario.name}!</span>{" "}
           Explora tus imagenes aqui
         </h1>
 
         <button
           onClick={() => setMisImages(!misImages)}
-          className="px-4 text-sm py-2 lg:text-[1rem] lg:px-6 bg-purple-500 text-white rounded-full hover:bg-purple-600 "
+          className="px-6 text-sm py-2 lg:text-[1rem] lg:px-6 bg-indigo-800 text-white rounded-full hover:bg-indigo-900 "
         >
           {!misImages ? "Mis imagenes" : "Mi busqueda"}
         </button>
@@ -152,8 +152,8 @@ const Dashboard = () => {
             </p>
           ) : (
             userId?.map((imgs, i) => (
-              <div key={i} className="bg-gray-200 break-inside-avoid relative">
-                <img src={imgs.url} className="w-full" />
+              <div key={i} className="bg-gray-200 break-inside-avoid rounded-lg relative">
+                <img src={imgs.url} className="w-full rounded-lg" />
                 <button
                   onClick={() =>
                     downloadImage(elemento.image_url, elemento.name)
@@ -167,8 +167,8 @@ const Dashboard = () => {
           )
         ) : busqueda?.length >= 0 ? (
           busqueda.map((elemento, i) => (
-            <div key={i} className="bg-gray-200 break-inside-avoid relative">
-              <img src={elemento.image_url} className="w-full" />
+            <div key={i} className="bg-gray-200 break-inside-avoid relative rounded-lg">
+              <img  src={elemento.image_url} className="w-full rounded-lg" />
               <button
                 onClick={() => downloadImage(elemento.image_url, elemento.name)}
                 className="absolute right-2 bottom-2 text-white text-[2rem]"

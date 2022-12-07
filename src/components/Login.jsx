@@ -28,12 +28,7 @@ const Login = () => {
   }, [errorMessage]);
 
   return (
-    <div
-      className="w-full min-h-screen flex justify-center items-center"
-      style={{
-        backgroundImage: "linear-gradient(115deg,#7e22ce, #7e22ce, #6b21a8)",
-      }}
-    >
+    <div className="w-full min-h-screen flex justify-center items-center bg-indigo-800">
       <div className="rounded-lg mx-4 lg:shadow-2xl bg-white  container lg:mx-72 ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gid-cols-1 lg:grid-cols-2 gap-3">
@@ -43,7 +38,7 @@ const Login = () => {
             ></div>
 
             <div className="py-8 px-4">
-              <h1 className="font-semibold text-xl">Incia Sesión</h1>
+              <h1 className="font-semibold text-xl">Inicia Sesión</h1>
               <p className="mt-3 text-sm">
                 Sube y descarga imagenes en PexelsPlus
               </p>
@@ -51,7 +46,6 @@ const Login = () => {
               <input
                 className="mt-4 w-full rounded border-gray-300 focus:outline-1 border-1 text-sm"
                 type="text"
-                autoFocus={true}
                 placeholder="Email"
                 {...register("email", {
                   required: true,
@@ -73,7 +67,7 @@ const Login = () => {
               )}
 
               <div className="block mt-2">
-                <button className="py-3 text-sm w-full rounded-lg bg-indigo-600 text-white font-semibold text-center">
+                <button className="py-3 text-sm w-full rounded-lg bg-indigo-700 text-white font-semibold text-center">
                   Acceder
                 </button>
               </div>

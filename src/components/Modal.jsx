@@ -13,13 +13,13 @@ const Modal = ({ children, closeModal, setcloseModal, titulo, bac, color, icono,
                 <button
                   type="button"
                   style={{ color: `${ color ? color : `#03C9D7`}`, backgroundColor: `${bac ? bac : `#E5FAFB`}` }}
-                  className=" text-xl rounded-lg p-3 hover:bg-light-gray"
+                  className=" text-xl rounded-lg px-2 md:p-3 hover:bg-light-gray"
                 >
                   {icono ? icono : <BsImage /> }
                 </button>
 
                 <div>
-                  <p className="font-semibold">{info ? info : "modulo"}</p>
+                  <p className="font-semibold text-sm">{info ? info : "modulo"}</p>
                   <p className="text-gray-500 text-sm dark:text-gray-400">
                     {titulo ? titulo : "Añadir"}
                   </p>
@@ -69,11 +69,17 @@ const ContenedorModal = styled.div`
   border-radius: 5px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 20px;
+  @media(max-width: 700px) {
+    max-width: 900px;
+  }
 `;
 
 const ContenedorHeader = styled.div`
   z-index: 999;
   margin-bottom: 15px;
+  @media(max-width: 700px) {
+    margin-bottom: 5px;
+  }
 `;
 
 const BottonCerrar = styled.button`
@@ -88,6 +94,10 @@ const BottonCerrar = styled.button`
   border-radius: 5px;
   color: #a855f7;
   font-weight: bold;
+  @media(max-width: 700px) {
+    right: 8px;
+    width: 30px;
+  }
 
 
 `;
